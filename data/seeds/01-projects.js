@@ -1,8 +1,13 @@
 const projects = [
   {
     project_name: "Sample Project ",
-    project_description: "Description for Sample Project 1",
+    project_description: "Description for Sample Project ",
     project_completed: false,
+  },
+  {
+    project_name: "Sample Project 2 ",
+    project_description: "Description for Sample Project 2 ",
+    project_completed: true,
   },
 ];
 
