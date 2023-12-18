@@ -17,4 +17,14 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.post("/", async (req, res, next) => {
+  try {
+    const newResource = req.body;
+    const addedResource = await Resources.addResource(newResource);
+    res.status(201).json(addedResource);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

@@ -23,9 +23,7 @@ router.post("/", async (req, res, next) => {
       return res.status(400).json({ message: "Project_name is required." });
     }
     const newProject = await Projects.createProject(req.body);
-
     newProject.project_completed = !!newProject.project_completed;
-
     res.status(201).json(newProject);
   } catch (err) {
     next(err);
