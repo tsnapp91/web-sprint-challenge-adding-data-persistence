@@ -11,9 +11,13 @@ const projects = [
   },
 ];
 
+const resources = [
+  { resource_name: "Internet", resource_description: " World Wide Web" },
+];
+
 exports.seed = async function (knex) {
   await knex("projects").insert(projects);
-  // await knex("ingredients").insert(ingredients);
+  await knex("resources").insert(resources);
   // await knex("steps").insert(steps);
   // await knex("step_ingredients").insert(step_ingredients);
 };

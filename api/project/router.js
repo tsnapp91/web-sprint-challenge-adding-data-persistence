@@ -15,4 +15,21 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
+
+router.post("/", async (req, res, next) => {
+  try {
+    const { project_name } = req.body;
+    if (!project_name) {
+      return res.status(400).json({ message: "Project_name is required." });
+    }
+    const newProject = await Projects.createProject(req.body);
+
+    newProject.project_completed = !!newProject.project_completed;
+
+    res.status(201).json(newProject);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
