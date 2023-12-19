@@ -14,6 +14,22 @@ async function getAllTasksWithProjects() {
     .join("projects as p", "t.project_id", "p.project_id");
 }
 
+async function addTask(task) {
+  const [taskId] = await db("tasks").insert(task);
+  return getTaskById(taskId);
+}
+
+async function getTaskById(taskId) {
+  return db("tasks").where({ task_id: taskId }).first();
+}
+
+async function doesProjectExist(projectId) {
+  const result = await db("projects").where({ project_id: projectId }).first();
+  return !!result;
+}
+
 module.exports = {
   getAllTasksWithProjects,
+  addTask,
+  doesProjectExist,
 };

@@ -19,12 +19,10 @@ async function createProject(project) {
   const [newProjectId] = await db("projects").insert(project);
   const newProject = await db("projects")
     .where({ project_id: newProjectId })
-    .select(
-      "project_id",
-      "project_name",
-      "project_description",
-      "project_completed"
-    );
+    .select("project_name", "project_description", "project_completed")
+    .first();
+
+  newProject.project_completed = Boolean(newProject.project_completed);
 
   return newProject;
 }
